@@ -132,6 +132,7 @@ function App() {
               rel="noopener noreferrer"
               className="project-github-btn"
             >
+              <img className="githublogo" src={GithubLogo}/>
               View on GitHub
             </a>
           </div>
