@@ -216,7 +216,7 @@ function App() {
 
   <div className="contact-content">
     <a
-      href="https://discord.gg/U7stfxjXMk"
+      href="https://discord.gg/vFD9TJby4K"
       target="_blank"
       rel="noopener noreferrer"
       className="contact-card"
