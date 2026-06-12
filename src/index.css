@@ -3,10 +3,16 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html {
-  font-size: 16px;
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -24,54 +30,61 @@ body {
 }
 
 .hero {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-4);
+
+  padding: 40px var(--space-4) 120px var(--space-4);
+
   background-color: #72A545;
+  border-bottom: 4px solid #111111;
 }
 
 .title-container {
-  position: relative;
+  position: absolute;
+  
   display: inline-block;
-  background-color: #3D5A28;
+  background-color: #2E4D1E;
   border: 4px solid #111111;
-  box-shadow: 8px 8px 0 #111111;
-  padding: 10px clamp(24px, 6vw, 80px);
-  transform: rotate(-2deg);
+  box-shadow: 6px 6px 0 0 #111111;
+  padding: 14px 45px;
+  transform: rotate(-1deg);
   z-index: 1;
+
+  top: -13%;
 }
 
 .title-container::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  background-color: #3D5A28;
-  z-index: -1;
+  display: none;
 }
 
 .title {
   font-family: "DM Sans", sans-serif;
   font-size: clamp(3rem, 8vw, 6rem);
   color: #FFFFFF;
-  margin: 15px 0;
+  margin: 0;
 }
 
 .dev-type-container {
+  width: 100%;
+  max-width: 600px;
   width: fit-content;
+  margin: 25px auto 0 auto;
   background-color: rgb(43 70 23 / 50%);
   border: 1.5px solid #F4F4F4;
-  padding: 6px 16px;
-  margin-top: 25px;
+  padding: 8px 18px;
+  text-align: center;
+  
 }
 
 .dev-type-text {
   font-family: "DM Sans", sans-serif;
   font-weight: 600;
+  font-size: 1rem;
   color: #F4F4F4;
+  display: block;
 }
 
 .introduction-text-container {
@@ -100,16 +113,26 @@ body {
   background-color: #F5F1EB;
   padding: 12px 32px;
   border: 3px solid #111111;
-  box-shadow: 10px 10px 0 #111111;
+
+  box-shadow: 6px 6px 0 #111111;
+
   cursor: pointer;
+
   transform: skewX(-10deg);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .about-me-button:hover,
 .projects-button:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 13px 13px 0 #111111;
+  transform: skewX(-10deg) translate(-4px, -4px);
+
+  box-shadow: 10px 10px 0 #111111;
+}
+
+.about-me-button:active,
+.projects-button:active {
+  transform: skewX(-10deg) translate(2px, 2px);
+  box-shadow: 4px 4px 0 #111111;
 }
 
 .about-me-button-text,
@@ -119,41 +142,16 @@ body {
   color: #151515;
 }
 
-.about-me-section {
-  width: 100%;
-  padding: 100px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #72A545;
-}
-
-.projects-section {
-  width: 100%;
-  padding: 100px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #F4F1EB;
-}
-
 .about-me-title-container,
 .projects-title-container,
 .languages-title-container {
-  display: inline-block;
-  margin-bottom: 50px;
+  display: block;
+  margin: 0 auto 60px auto;
+  width: fit-content;
   border: 4px solid #111111;
   box-shadow: 10px 10px 0 #111111;
   padding: 2px 80px;
-}
-
-.about-me-title-container,
-.languages-title-container {
-  background-color: #3D5A28;
-}
-
-.projects-title-container {
-  background-color: #F4F1EB;
+  text-align: center;
 }
 
 .about-me-title,
@@ -161,15 +159,36 @@ body {
 .languages-title {
   font-family: "DM Sans", sans-serif;
   margin: 15px 0;
+  font-size: 2.5rem;
+  font-weight: 800;
 }
 
-.about-me-title,
-.languages-title {
+.about-me-title-container {
+  background-color: #3D5A28;
+}
+
+.about-me-title {
   color: #FFFFFF;
 }
 
-.projects-title {
+.projects-title-container,
+.languages-title-container {
+  background-color: #F4F1EB;
+}
+
+.projects-title,
+.languages-title {
   color: #111111;
+}
+
+.about-me-section {
+  width: 100%;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #72A545;
+  border-bottom: 4px solid #111111;
 }
 
 .about-me-content {
@@ -181,14 +200,16 @@ body {
   width: 100%;
 }
 
-.about-me-sentence {
+.about-me-description {
   font-family: "Trispace", sans-serif;
-  color: #FFFFFF;
-  line-height: 1.7;
+  color: #111111;
+  font-size: 1.4rem;
+  line-height: 1.8;
   flex: 1;
-  max-width: 500px;
+  max-width: 550px;
   text-align: left;
   margin: 0;
+  text-shadow: 1px 1px 0px #111111;
 }
 
 .about-me-photo {
@@ -199,22 +220,48 @@ body {
   box-shadow: 13px 13px 0 #111111;
 }
 
-.projects-content {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
+.split-section {
   width: 100%;
-  max-width: 1200px;
-  margin-top: 15px;
+  padding: 100px 40px;
+  background-color: #F4F1EB;
+  display: flex;
   justify-content: center;
-  align-items: stretch;
+}
+
+.section-content-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.split-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.left-projects-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.projects-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  width: 100%;
 }
 
 .project-card {
-  flex: 1 1 350px;
-  max-width: 550px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
   background-color: #F4F1EB;
@@ -226,7 +273,7 @@ body {
 
 .project-card-title {
   font-family: "Outfit", "DM Sans", sans-serif;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 700;
   color: #111111;
   margin: 0;
@@ -234,7 +281,7 @@ body {
 
 .project-card-description {
   font-family: "DM Sans", sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   color: #4A4A4A;
   margin: 0;
@@ -250,6 +297,14 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.project-tags-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
 }
 
 .project-github-btn {
@@ -271,81 +326,31 @@ body {
   background-color: #E2DDD5;
 }
 
-.PythonLogo {
-  max-width: 25px;
-}
+.PythonLogo { max-width: 25px; }
+.DiscordLogo { max-width: 20px; }
+.CLogo { width: 20px; height: 20px; object-fit: contain; }
 
-.DiscordLogo {
-  max-width: 20px;
-}
-
-.CLogo {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-
-.githublogo {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-
-.skills-section {
-  width: 100%;
-  padding: 100px 20px;
+.right-skills-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #F4F1EB;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 0;
 }
 
-.skills-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-
-  padding: 100px 20px;
-
+.skills-vertical-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  background-color: #F4F1EB;
+  gap: 40px;
+  width: 100%;
 }
 
 .skill-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-start;
   width: 100%;
 }
-
-.skill-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.skill-card {
-  background-color: #F4F1EB;
-  border: 4px solid #111;
-  box-shadow: 12px 12px 0 #111;
-
-  padding: 16px 24px;
-
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  font-family: "DM Sans", sans-serif;
-  font-weight: 700;
-
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
 
 .skill-group-title {
   font-family: "DM Sans", sans-serif;
@@ -353,14 +358,32 @@ body {
   font-weight: 800;
   color: #111;
   margin: 10px 0 20px 0;
-  background: none;
-  border: none;
-  box-shadow: none;
+}
+
+.skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.skill-card {
+  background-color: #F5F1EB;
+  border: 4px solid #111111;
+  box-shadow: 8px 8px 0 #111111;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .skill-card:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 16px 16px 0 #111;
+  box-shadow: 12px 12px 0 #111111;
+  background-color: #E2DDD5;
 }
 
 .skill-icon {
@@ -370,158 +393,100 @@ body {
   display: block;
 }
 
-.contact-section {
+.console-footer {
   width: 100%;
-  padding: 100px 20px;
-  background-color: #72A545;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact-title-container {
-  display: inline-block;
   background-color: #3D5A28;
-
-  border: 4px solid #111111;
-  box-shadow: 10px 10px 0 #111111;
-
-  padding: 2px 80px;
-  margin-bottom: 50px;
+  border-top: 4px solid #111111;
+  padding: 24px 40px;
+  margin-top: 0;
+  position: relative;
 }
 
-.contact-title {
-  font-family: "DM Sans", sans-serif;
-  color: #FFFFFF;
-  margin: 15px 0;
-}
-
-.contact-content {
+.console-footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
-
-  gap: 40px;
-
-  width: 100%;
-  max-width: 1200px;
+  gap: 20px;
 }
 
-.contact-card {
-  flex: 1 1 350px;
-  max-width: 500px;
-
-  background-color: #F4F1EB;
-
-  border: 4px solid #111111;
-  box-shadow: 12px 12px 0 #111111;
-
-  padding: 40px;
-
-  text-align: left;
-  text-decoration: none;
-
-  transition: transform 0.15s ease,
-              box-shadow 0.15s ease;
-}
-
-.contact-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 16px 16px 0 #111111;
-}
-
-.contact-card-title {
-  font-family: "Outfit", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-
-  color: #111111;
-  margin: 0 0 15px 0;
-}
-
-.contact-card-description {
-  font-family: "DM Sans", sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.6;
-
-  color: #4A4A4A;
-  margin: 0;
-}
-
-.contact-card-icon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  display: block;
-  flex-shrink: 0;
-}
-
-.contact-card-header {
+.console-copyright-group {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
 }
 
-@media (max-width: 768px) {
-  .title-container {
-    padding: 5px 40px;
-  }
-
-  .about-me-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .about-me-sentence {
-    text-align: center;
-    max-width: 700px;
-  }
-
-  .about-me-photo {
-    width: min(400px, 100%);
-  }
-
-  .projects-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .project-card {
-    padding: 25px;
-    max-width: 500px;
-  }
-
-  .project-card-title {
-    font-size: 2.2rem;
-  }
+.console-mini-badge {
+  font-family: "Outfit", sans-serif;
+  font-weight: 900;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: #111111;
+  background-color: #FFFFFF;
+  border: 2px solid #111111;
+  padding: 2px 8px;
+  transform: rotate(-3deg);
 }
 
-@media (max-width: 480px) {
-  .title {
-    font-size: 2.2rem;
-  }
+.console-copyright-text {
+  font-family: "Trispace", monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #FFFFFF;
+}
 
-  .project-card {
-    padding: 20px;
-  }
+.console-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.console-link {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.console-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.console-divider {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 @media (max-width: 1024px) {
+  .split-container {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+  
+  .split-section {
+    padding: 60px 20px;
+  }
+  
+  .left-projects-column,
+  .right-skills-column {
+    align-items: center;
+  }
+
+  .skill-grid {
+    justify-content: center;
+  }
+
   .about-me-content {
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
-
-  .projects-content {
-    gap: 30px;
-  }
-
-  .project-card {
-    max-width: 100%;
   }
 
   .hero {
@@ -530,5 +495,30 @@ body {
 
   .title {
     font-size: clamp(2.8rem, 7vw, 5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .console-footer {
+    padding: 30px 20px;
+  }
+  .console-footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .console-copyright-group {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2.2rem;
+  }
+  .project-card {
+    padding: 20px;
   }
 }
